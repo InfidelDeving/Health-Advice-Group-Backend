@@ -3,7 +3,6 @@ from typing import Optional
 
 class BaseResponseModel(BaseModel):
     msg: str
-    code: int
 
 class UserHealth(BaseModel):
     height: str
@@ -18,6 +17,7 @@ class SubmitTrackingData(BaseModel):
 
 
 class User(BaseModel):
+    id: str
     display: str
     email: str
     password: str
@@ -25,6 +25,7 @@ class User(BaseModel):
     tracking_data: dict # object/dictionary key:value == date:input
 
 class UserPublic(BaseModel):
+    id: str
     display: str
     email: str
     health: UserHealth
@@ -45,6 +46,6 @@ class UpdateUser(BaseModel):
     tracking_data: Optional[dict] = None # object/dictionary key:value == date:input
 
 class AddUserResponse(BaseResponseModel):
+    id: str
     email: str
     display: str
-    password: str
