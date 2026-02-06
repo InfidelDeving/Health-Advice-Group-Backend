@@ -49,3 +49,18 @@ class AddUserResponse(BaseResponseModel):
     id: str
     email: str
     display: str
+
+class AccessToken(BaseModel):
+    id: str
+    issue: int
+    expire: int
+    token: str
+
+class LoginUser:
+    email: str
+    password: str
+
+class LoginUserResponse:
+    id: str
+    email: str
+    token: AccessToken
