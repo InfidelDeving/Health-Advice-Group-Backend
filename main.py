@@ -7,7 +7,7 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],
+    allow_origins=["http://localhost:5173"],
     allow_methods=["*"],
     allow_headers=["*"],
 )
@@ -24,13 +24,3 @@ def default_route():
     return {"server status" : "ok"}
 
 
-# set up coors policy so it doesn't tell u to fuk off
-# import routes from routing files
-# add routes to the app itself so it can actually use them
-
-# optionally create default route
-
-
-# IN ROUTES FILE
-# CREATE API ROUTER
-# CREATE ENDPOINTS

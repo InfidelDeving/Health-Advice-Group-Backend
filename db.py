@@ -2,9 +2,13 @@ from bson import ObjectId
 from fastapi import HTTPException
 from pymongo import MongoClient
 
+#mongodb adress
 client = MongoClient("mongodb://localhost:27017")
 db = client["users"]
+refresh_tokens = db["refresh_tokens"]
 
+
+#MongoDB's id is not stored as a string so we need a quick way of converting from python safe format to a mongo safe format
 def to_object_id(id_str: str) -> ObjectId:
 
     try:
@@ -13,7 +17,7 @@ def to_object_id(id_str: str) -> ObjectId:
         raise HTTPException(status_code=400, detail="Invalid ID format")
 
 
-# This is also useful so we wont have to manually convert the id every time when we want the entire document
+# inverse of the previous function, converts ID from mongo to string and returns a clean document
 def serialize_doc(doc: dict) -> dict:
     if not doc:
         return doc

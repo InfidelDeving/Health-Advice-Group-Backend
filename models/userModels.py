@@ -16,21 +16,6 @@ class SubmitTrackingData(BaseModel):
     input: str 
 
 
-class User(BaseModel):
-    id: str
-    display: str
-    email: str
-    password: str
-    health: UserHealth
-    tracking_data: dict # object/dictionary key:value == date:input
-
-class UserPublic(BaseModel):
-    id: str
-    display: str
-    email: str
-    health: UserHealth
-    tracking_data: dict # object/dictionary key:value == date:input
-
 class AddUser(BaseModel):
     email: str
     display: str
@@ -50,17 +35,21 @@ class AddUserResponse(BaseResponseModel):
     email: str
     display: str
 
-class AccessToken(BaseModel):
-    id: str
-    issue: int
-    expire: int
-    token: str
+class AccessToken(BaseModel): 
+    token: str 
+    token_type: str = "bearer"
 
-class LoginUser:
+class LoginUser(BaseModel):
     email: str
     password: str
 
-class LoginUserResponse:
+class LoginUserResponse(BaseModel):
     id: str
     email: str
-    token: AccessToken
+    access_token: AccessToken
+    refresh_token: str
+
+
+class RefreshTokenRequest(BaseModel):
+    refresh_token: str
+
